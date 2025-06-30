@@ -1,0 +1,98 @@
+<mjml>
+  <mj-head> </mj-head>
+
+  <mj-body width="800px">
+    <!-- Header section -->
+    <mj-section background-color="#ffffff">
+      <mj-column>
+        <!-- Company logo image -->
+        <mj-image
+          width="150px"
+          src="https://i.pinimg.com/originals/a8/1d/29/a81d29f7fff57e914b59671f06660181.png"
+        />
+        <!-- Divider -->
+        <mj-divider border-color="#FF3131"></mj-divider>
+      </mj-column>
+    </mj-section>
+
+    <!-- Content section -->
+    <mj-wrapper padding-top="0" padding-bottom="0" css-class="body-section">
+      <mj-section
+        background-color="#ffffff"
+        padding-left="15px"
+        padding-right="15px"
+      >
+        <mj-column width="100%">
+          <!-- Introductory text -->
+          <mj-text mj-class="head-text"> Hello! </mj-text>
+          <mj-text font-weight="bold" padding-bottom="15px">
+            You have signed up Blog application using this email {{email}},
+          </mj-text>
+
+          <!-- Content text -->
+
+          <mj-text>
+            Please enter the OTP displayed below:
+            <br /><br />
+            {{otp}},
+
+            <br /><br />
+            Best regards,
+          </mj-text>
+        </mj-column>
+      </mj-section>
+
+      <!-- Footer section -->
+      <mj-section>
+        <mj-column width="100%" padding="0">
+          <!-- Social icons -->
+          <mj-social
+            font-size="15px"
+            icon-size="30px"
+            mode="horizontal"
+            padding="0"
+            align="center"
+          >
+            <mj-social-element
+              name="facebook"
+              href="#"
+              mj-class="social-bg"
+            ></mj-social-element>
+            <mj-social-element
+              name="google"
+              href="#"
+              mj-class="social-bg"
+            ></mj-social-element>
+            <mj-social-element
+              name="linkedin"
+              href="#"
+              mj-class="social-bg"
+            ></mj-social-element>
+          </mj-social>
+
+          <!-- Contact information -->
+          <mj-text
+            color="#445566"
+            font-size="11px"
+            align="center"
+            line-height="16px"
+          >
+            If you have any questions regarding this email or any related
+            queries, you can contact us at
+            <a href="kanchanbasnet5@gmail.com">kanchanbasnet5@gmail.com</a>
+          </mj-text>
+
+          <!-- Copyright -->
+          <mj-text
+            color="#445566"
+            font-size="11px"
+            align="center"
+            line-height="16px"
+          >
+            &copy; Blog Application, All Rights Reserved.
+          </mj-text>
+        </mj-column>
+      </mj-section>
+    </mj-wrapper>
+  </mj-body>
+</mjml>
