@@ -81,6 +81,6 @@ export const verifyUser = async (req, res) => {
 
     return res.status(200).send({ message: "User has been verified." });
   } catch (error) {
-    console.error("An erro has been occured:::", error);
+    console.error("An error has been occured:::", error);
   }
 };

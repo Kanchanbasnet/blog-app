@@ -3,6 +3,7 @@ import express from 'express';
 import * as dotenv from 'dotenv';
 import router from './routes/blog.routes.js';
 import userRouter from './routes/user.routes.js';
+import '../src/cron/deleteOTP.js'
 
 
 dotenv.config();
