@@ -45,7 +45,7 @@ const deleteOTPAfterExpiry = async () => {
 
 cron.schedule('*/10 * * * *', async ()=>{
     try{
-        console.log("Cron job started.....")
+    console.log("Cron job started.....")
     await deleteOTPAfterExpiry();
 
     }

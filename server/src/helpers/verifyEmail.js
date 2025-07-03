@@ -3,7 +3,7 @@ import * as dotenv from 'dotenv';
 dotenv.config()
 
 
-export const verifyEmail = (email)=>{
+export const verifyEmail = ()=>{
 
     const data = TOTP.generate(process.env.TOTP_KEY, {
         digits: 8,

@@ -2,6 +2,9 @@ import supabase from "../config/connection.js";
 import { compileEmailtemplate, sendEmail } from "../helpers/nodemailer.js";
 import { verifyEmail } from "../helpers/verifyEmail.js";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+import * as dotenv from "dotenv";
+dotenv.config();
 
 export const registerUser = async (req, res) => {
   try {
@@ -28,7 +31,7 @@ export const registerUser = async (req, res) => {
       .from("users")
       .insert({ email: email, password: hashedPassword })
       .select();
-    const verfiedData = verifyEmail(email);
+    const verfiedData = verifyEmail();
 
     await supabase
       .from("email_verification")
@@ -58,12 +61,10 @@ export const verifyUser = async (req, res) => {
       .match({ email: email, otp: otp });
 
     if (verificationError) {
-      return res
-        .status(500)
-        .send({
-          message: "Verification lookup failed",
-          error: verificationError,
-        });
+      return res.status(500).send({
+        message: "Verification lookup failed",
+        error: verificationError,
+      });
     }
     if (!data || data.length === 0) {
       return res.status(404).send({ message: "Incorrect OTP number" });
@@ -84,3 +85,45 @@ export const verifyUser = async (req, res) => {
     console.error("An error has been occured:::", error);
   }
 };
+
+export const loginUser = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    const { data, error } = await supabase
+      .from("users")
+      .select()
+      .eq("email", email);
+    if (error) {
+      return res.send(error);
+    }
+    if (data.length === 0) {
+      console.error(
+        `User with the email ${email} does not exists. Please Register.`
+      );
+    }
+    const user = data[0]
+    const comparePassword = await bcrypt.compare(password, user.password);
+    const payload = {
+      email: email,
+      id: data.id,
+    };
+    if (comparePassword) {
+      const token = jwt.sign(payload, process.env.SECRET_KEY, {
+        expiresIn: "1h",
+      });
+      return res.send({ message: "Login Successful", token: token });
+    } else {
+      return res.send({ message: `Invalid credentials.` });
+    }
+  } catch (error) {
+    console.error(`An error has been occurred.`, error);
+  }
+};
+
+export const getAllUsers = async (req,res)=>{
+  try{
+
+  }catch(error){
+    
+  }
+}
